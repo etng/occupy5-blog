@@ -19,6 +19,7 @@ import { PostJsonLd } from '@/components/json-ld';
 import { LinkPreview } from '@/components/link-preview';
 import { TagCard } from '@/components/tag-card';
 import { getPost, getPosts } from '@/lib/source';
+import { siteConfig } from '@/site.config';
 
 export const dynamicParams = false;
 
@@ -45,9 +46,9 @@ const Page = async (props: PageProps<'/posts/[slug]'>) => {
       toc={post.data.toc}
       full={post.data.full}
       editOnGithub={{
-        repo: 'blog',
-        owner: 'occupy5',
-        sha: 'main',
+        repo: siteConfig.repo.name,
+        owner: siteConfig.repo.owner,
+        sha: siteConfig.repo.branch,
         path,
       }}
       tableOfContent={{
@@ -113,9 +114,7 @@ export const generateMetadata = async (props: {
   imageParams.set('description', description ?? '');
 
   return {
-    metadataBase: new URL(
-      process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000',
-    ),
+    metadataBase: new URL(siteConfig.url),
     title,
     description,
     openGraph: {

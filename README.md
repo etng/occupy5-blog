@@ -38,3 +38,35 @@ bun install
 ```bash
 bun dev
 ```
+
+## 生产构建
+
+```bash
+bun run build
+```
+
+## Standalone 打包
+
+生成可部署的 standalone 产物并打包到 `dist/standalone.tar.gz`：
+
+```bash
+make package-standalone
+```
+
+解压后运行：
+
+```bash
+tar -xzf dist/standalone.tar.gz -C /path/to/app
+PORT=33480 node /path/to/app/server.js
+```
+
+## Makefile 速查
+
+```bash
+make dev
+make build
+make postbuild
+make check
+make check-fix
+make package-standalone
+```

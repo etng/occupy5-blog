@@ -1,7 +1,4 @@
-import {
-  ChevronLeft,
-  ChevronRight,
-} from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 
@@ -25,7 +22,7 @@ const PaginationButton = ({
   if (disabled) {
     return (
       <span
-        aria-disabled="true"
+        aria-disabled='true'
         className={`${baseClassName} bg-fd-secondary/50 opacity-40 cursor-not-allowed`}
       >
         {children}
@@ -60,29 +57,29 @@ export const Pagination = ({
   path: string;
 }) => {
   return (
-    <nav 
-      role="navigation" 
-      aria-label="Pagination"
-      className="flex items-center justify-center gap-3 py-8"
+    <nav
+      role='navigation'
+      aria-label='Pagination'
+      className='flex items-center justify-center gap-3 py-8'
     >
-      <PaginationButton 
-        href={`${path}/${current - 1}`} 
+      <PaginationButton
+        href={`${path}/${current - 1}`}
         disabled={current === 1}
-        label="Go to previous page"
+        label='Go to previous page'
       >
         <ChevronLeft size={16} />
       </PaginationButton>
 
-      <div className="flex items-center gap-1 px-4 text-sm font-medium text-fd-muted-foreground">
-        <span className="text-fd-foreground">{current}</span>
-        <span className="opacity-50">/</span>
+      <div className='flex items-center gap-1 px-4 text-sm font-medium text-fd-muted-foreground'>
+        <span className='text-fd-foreground'>{current}</span>
+        <span className='opacity-50'>/</span>
         <span>{end}</span>
       </div>
 
-      <PaginationButton 
-        href={`${path}/${current + 1}`} 
+      <PaginationButton
+        href={`${path}/${current + 1}`}
         disabled={current === end}
-        label="Go to next page"
+        label='Go to next page'
       >
         <ChevronRight size={16} />
       </PaginationButton>

@@ -5,6 +5,7 @@ import { description, title } from './layout.config';
 import './global.css';
 import 'katex/dist/katex.css';
 import { RootProvider } from 'fumadocs-ui/provider/next';
+import { siteConfig } from '@/site.config';
 
 const geist = Geist({
   subsets: ['latin'],
@@ -17,18 +18,16 @@ const jetbrains = JetBrains_Mono({
 
 const Layout = ({ children }: LayoutProps<'/'>) => {
   return (
-    <html
-      className={`${geist.className} ${jetbrains.variable} antialiased`}
-    >
+    <html className={`${geist.className} ${jetbrains.variable} antialiased`}>
       <body className='flex min-h-dvh flex-col'>
         <RootProvider
           i18n={{
-              locale: "cn",
-              translations: {
-                toc: "目录",
-                previousPage: "上一页",
-                nextPage: "下一页",
-              },
+            locale: 'cn',
+            translations: {
+              toc: '目录',
+              previousPage: '上一页',
+              nextPage: '下一页',
+            },
           }}
         >
           {children}
@@ -42,9 +41,7 @@ const Layout = ({ children }: LayoutProps<'/'>) => {
 export default Layout;
 
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000',
-  ),
+  metadataBase: new URL(siteConfig.url),
   title,
   description,
   openGraph: {

@@ -1,5 +1,6 @@
 import { Feed } from 'feed';
 import { getPosts } from '@/lib/source';
+import { siteConfig } from '@/site.config';
 
 export const dynamic = 'force-static';
 
@@ -13,15 +14,13 @@ const escapeForXML = (str: string) => {
 };
 
 export const GET = () => {
-  const baseUrl = new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000',
-  );
+  const baseUrl = new URL(siteConfig.url);
 
   const feed = new Feed({
-    title:'不求谌解',
-    description: '💻 Web Dev / Creative 💗 ⚽ 🎧 🏓',
+    title: siteConfig.rss.title,
+    description: siteConfig.rss.description,
     id: baseUrl.href,
-    copyright: 'shenn.xyz',
+    copyright: siteConfig.name,
     link: baseUrl.href,
     feed: new URL('/api/rss.xml', baseUrl).href,
     updated: new Date(),
@@ -47,8 +46,8 @@ export const GET = () => {
       date: post.data.date,
       author: [
         {
-          name: 'shenn.xyz',
-          link: 'https://shenn.xyz',
+          name: siteConfig.author.name,
+          link: siteConfig.author.url,
         },
       ],
     });

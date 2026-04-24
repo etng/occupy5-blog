@@ -1,7 +1,8 @@
 import { ImageResponse } from 'next/og';
 import type { NextRequest } from 'next/server';
+import { siteConfig } from '@/site.config';
 
-export const runtime = 'edge';
+export const dynamic = 'force-static';
 
 const loadGoogleFont = async (font: string, text: string) => {
   const url = `https://fonts.googleapis.com/css2?family=${font}&text=${encodeURIComponent(text)}`;
@@ -59,7 +60,7 @@ export const GET = async (req: NextRequest) => {
               marginRight: 'auto',
             }}
           >
-            shenn.xyz
+            {siteConfig.og.defaultTitle}
           </p>
         </div>
       </div>,
@@ -69,7 +70,10 @@ export const GET = async (req: NextRequest) => {
         fonts: [
           {
             name: 'notoSansSC',
-            data: await loadGoogleFont('Noto+Sans+SC', 'shenn.xyz'),
+            data: await loadGoogleFont(
+              siteConfig.og.font,
+              siteConfig.og.defaultTitle,
+            ),
             style: 'normal',
           },
         ],

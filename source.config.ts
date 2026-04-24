@@ -46,7 +46,10 @@ export default defineConfig({
         light: 'min-light',
         dark: 'min-dark',
       },
-      transformers: [...(rehypeCodeDefaultOptions.transformers ?? []), transformerTwoslash()],
+      transformers: [
+        ...(rehypeCodeDefaultOptions.transformers ?? []),
+        transformerTwoslash(),
+      ],
       langs: ['js', 'jsx', 'ts', 'tsx'],
     },
     remarkPlugins: [remarkImage, remarkMath, remarkMdxMermaid],

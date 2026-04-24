@@ -15,7 +15,7 @@ export const TagCard = ({
   return (
     <Link
       href={`/tags/${name}`}
-      className="
+      className='
         group inline-flex items-center gap-1.5 
         px-3 py-1 
         text-sm font-medium
@@ -25,19 +25,17 @@ export const TagCard = ({
         hover:bg-fd-accent hover:text-fd-accent-foreground
         dark:hover:bg-fd-primary dark:hover:text-fd-primary-foreground
         hover:scale-105
-      "
+      '
     >
-      <Tag 
-        size={14} 
-        className="opacity-60 transition-opacity group-hover:opacity-100" 
+      <Tag
+        size={14}
+        className='opacity-60 transition-opacity group-hover:opacity-100'
       />
-      
+
       <span>{name}</span>
-      
+
       {displayCount && (
-        <span className="ml-0.5 text-xs opacity-60">
-          {count}
-        </span>
+        <span className='ml-0.5 text-xs opacity-60'>{count}</span>
       )}
     </Link>
   );

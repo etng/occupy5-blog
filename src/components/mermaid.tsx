@@ -16,9 +16,12 @@ export function Mermaid({ chart }: { chart: string }) {
   return <MermaidContent chart={chart} />;
 }
 
-const cache = new Map<string, Promise<string>>();
+const cache = new Map<string, Promise<unknown>>();
 
-function cachePromise(key: string, setPromise: () => Promise<string>): Promise<string> {
+function cachePromise<T>(
+  key: string,
+  setPromise: () => Promise<T>,
+): Promise<T> {
   const cached = cache.get(key);
   if (cached) return cached;
 
@@ -29,6 +32,7 @@ function cachePromise(key: string, setPromise: () => Promise<string>): Promise<s
 
 function MermaidContent({ chart }: { chart: string }) {
   const { resolvedTheme } = useTheme();
+  use(cachePromise('mermaid', () => import('mermaid')));
 
   const baseTheme = resolvedTheme === 'dark' ? THEMES['catppuccin-mocha'] : THEMES['catppuccin-latte'];
 

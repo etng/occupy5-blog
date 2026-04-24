@@ -21,9 +21,7 @@ const Page = async (props: PageProps<'/list/[[...slug]]'>) => {
 
   return (
     <>
-      <h1 className='text-3xl font-bold mb-4'>
-        文章列表
-      </h1>
+      <h1 className='text-3xl font-bold mb-4'>文章列表</h1>
       <div className='flex flex-col gap-4 text-left'>
         {posts.map((post) => {
           const date = new Date(post.data.date).toLocaleDateString('zh-CN', {

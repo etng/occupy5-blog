@@ -6,6 +6,7 @@ import { Suspense } from 'react';
 import { fetchOGMetadata } from '@/actions/fetch-og-metadata';
 import { title as homeTitle } from '@/app/layout.config';
 import { getPost } from '@/lib/source';
+import { siteConfig } from '@/site.config';
 import { ImageWithFallback } from './image-with-fallback';
 
 const isInternalBlogLink = (url: string) => {
@@ -45,6 +46,9 @@ export const LinkCard = ({
 }) => {
   const isExternal = url.startsWith('http');
   const hostname = isExternal ? new URL(url).hostname : '';
+  const faviconUrl = hostname
+    ? `${siteConfig.faviconServiceBase}?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=64&url=https://${hostname}`
+    : '';
 
   const CardContent = (
     <>
@@ -56,7 +60,7 @@ export const LinkCard = ({
                 <div className='relative size-4 overflow-hidden'>
                   {hostname && (
                     <Image
-                      src={`https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=64&url=https://${hostname}`}
+                      src={faviconUrl}
                       alt=''
                       className='object-cover'
                       width={16}

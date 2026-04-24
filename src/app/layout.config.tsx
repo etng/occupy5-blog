@@ -1,9 +1,10 @@
 import type { LinkItemType } from 'fumadocs-ui/layouts/links';
 import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared';
 import { Newspaper, Rss, Tags } from 'lucide-react';
+import { siteConfig } from '@/site.config';
 
-export const title = 'shenn.xyz';
-export const description = "Silas Shen's blog";
+export const title = siteConfig.name;
+export const description = siteConfig.description;
 
 export const baseOptions: BaseLayoutProps = {
   nav: {

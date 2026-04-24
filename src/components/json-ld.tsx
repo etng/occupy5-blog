@@ -1,5 +1,6 @@
 import type { BlogPosting, BreadcrumbList, Graph } from 'schema-dts';
 import { title as homeTitle } from '@/app/layout.config';
+import { siteConfig } from '@/site.config';
 import type { Post } from '@/lib/source';
 
 export const PostJsonLd = ({ post }: { post: Post }) => {
@@ -7,9 +8,7 @@ export const PostJsonLd = ({ post }: { post: Post }) => {
     return null;
   }
 
-  const baseUrl = new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000',
-  ).href;
+  const baseUrl = new URL(siteConfig.url).href;
 
   const url = new URL(post.url, baseUrl).href;
 
@@ -32,12 +31,12 @@ export const PostJsonLd = ({ post }: { post: Post }) => {
     },
     author: {
       '@type': 'Person',
-      name: 'shenn.xyz',
-      url: 'https://shenn.xyz',
+      name: siteConfig.author.name,
+      url: siteConfig.author.url,
     },
     publisher: {
       '@type': 'Person',
-      name: 'shenn.xyz',
+      name: siteConfig.author.name,
     },
   };
 
@@ -80,9 +79,7 @@ export const PostJsonLd = ({ post }: { post: Post }) => {
 };
 
 export const TagJsonLd = ({ tag }: { tag: string }) => {
-  const baseUrl = new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000',
-  ).href;
+  const baseUrl = new URL(siteConfig.url).href;
 
   const breadcrumbList: BreadcrumbList = {
     '@type': 'BreadcrumbList',
